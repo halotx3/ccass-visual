@@ -1,8 +1,4 @@
-
-//   var instance = M.Tabs.init(el, options);
-
-  // Or with jQuery
-  
+ 
 
   $(document).ready(function(){
     // $('.tabs').tabs();
@@ -14,14 +10,6 @@
     $('.materialboxed').materialbox();
   });
 
-// $(".resetPg").click(function(){
-//   $(".g1").hide();
-//   $(".g2").hide();
-//   $(".g3").hide();
-//   $(".g4").hide();
-//   $(".front").show();
-// //   $('.materialboxed').materialbox();
-// };
   
 $(".graph1").click(function(){
     $(".g1").show();
