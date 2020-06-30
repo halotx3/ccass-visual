@@ -8,6 +8,8 @@
     $(".g4").hide();
     $(".front").show();
     $('.materialboxed').materialbox();
+    $('.slider').slider();
+    $('.tabs').tabs();
   });
 
   
