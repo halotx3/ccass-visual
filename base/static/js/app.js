@@ -1,5 +1,5 @@
  
-
+function start(){
   $(document).ready(function(){
     // $('.tabs').tabs();
     $(".g1").hide();
@@ -10,7 +10,26 @@
     $('.materialboxed').materialbox();
     $('.slider').slider();
     $('.tabs').tabs();
+    $('.collapsible').collapsible();
   });
+
+};
+
+start();
+
+$(".main_pg").click(function(){
+  $(document).ready(start);
+  // console.log("testing123")
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+    hoverEnabled: false
+    
+  });
+});
 
   
 $(".graph1").click(function(){
@@ -44,3 +63,4 @@ $(".graph4").click(function(){
     $(".g4").show();
     $(".front").hide();
 });
+
