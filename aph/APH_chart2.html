@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>APH Chart</title>
+       
+    </head>
+    <body>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <div id="APH_charts"></div>
+      <div class="showcase__section" id="bubble">
+        <div class="spacer --small"></div>
+        <div id="bubbleplots">
+          <div class="bubbleplot" data-num="0">
+            <div class="plot" id="plotdiv"></div>
+            <div class="control-row">
+              Occupation: <select class="OccupationButton"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <script>
+        // set the dimensions and margins of the graph
+        Plotly.d3.csv("combined.csv", function(err, rows){
+        function unpack(rows, key) {
+            return rows.map(function(row) { return row[key]; });}
+
+            var allEarners = unpack(rows, 'Name'),
+            allOccupation = unpack(rows, 'Occupation'),
+            allCategory = unpack(rows, 'Category'),
+            allYear = unpack(rows, 'Year'),
+            allIncome = unpack(rows, 'earnings'),
+            listofOccupation = [],
+            currentOccupation,
+            currentIncome = [],
+            currentYear = [];
+
+            for (var i = 0; i < allOccupation.length; i++ ){
+            if (listofOccupation.indexOf(allOccupation[i]) === -1 ){
+              listofOccupation.push(allOccupation[i]);
+            }
+            }
+
+            function getOccupationData(chosenOccupation) {
+            currentIncome = [];
+            currentYear= [];
+            for (var i = 0 ; i < allOccupation.length ; i++){
+              if ( allCOccupation[i] === chosenOccupation ) {
+                currentIncome.push(allIncome[i]);
+                currentYear.push(allYear[i]);
+              } 
+            }
+            };
+
+            // Default Country Data
+            setBubblePlot('Celebrity');
+
+            function setBubblePlot(chosenOccupation) {
+            getOccupationData(chosenOccupation);  
+
+            var trace1 = {
+              x: currentYear,
+              y: currentIncome,
+              mode: 'lines+markers',
+              marker: {
+                size: 12, 
+                opacity: 0.5
+              }
+            };
+
+            var data = [trace1];
+
+            var layout = {
+              title: 'Average Annual Income $MM<br>'+ chosenOccupation + ' Income'
+            };
+
+            Plotly.newPlot('plotdiv', data, layout, {showSendToCloud: true});
+            };
+
+            var innerContainer = document.querySelector('[data-num="0"'),
+            plotEl = innerContainer.querySelector('.plot'),
+            OccupationSelector = innerContainer.querySelector('.Occupationdata');
+
+            function assignOptions(textArray, selector) {
+            for (var i = 0; i < textArray.length;  i++) {
+              var currentOption = document.createElement('option');
+              currentOption.text = textArray[i];
+              selector.appendChild(currentOption);
+            }
+            }
+
+            assignOptions(listofCountries, OccupationSelector);
+
+            function updateOccupation(){
+            setBubblePlot(OccupationSelector.value);
+            }
+
+            OccupationSelector.addEventListener('change', updateOccupation, false);
+            });
+
+        </script>
+  
+    </body>
+</html>
