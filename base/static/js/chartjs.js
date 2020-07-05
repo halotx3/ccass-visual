@@ -1,5 +1,5 @@
 const baseUrl =
-    'http://serene-beach-38826.herokuapp.com/api/v1/celebrities/year/'
+  'http://serene-beach-38826.herokuapp.com/api/v1/celebrities/year/'
 
 // const colorScale = d3.interpolateInferno;
 const colorScale = d3.interpolateRainbow;
@@ -10,12 +10,15 @@ const colorRangeInfo = {
   useEndAsStart: false,
 };
 
-var myChart
+// var myChart
 
 function currentData(year = '2005') {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     d3.json(baseUrl + year).then(result => {
-      var chartData = {labels: [], data: []};
+      var chartData = {
+        labels: [],
+        data: []
+      };
       comparePay = compareValues('pay', 'desc');
       var sortedResult = result.sort(comparePay);
       var labels = sortedResult.map(r => r.name);
@@ -50,8 +53,16 @@ function createChart(chartId, chartData, colorScale, colorRangeInfo) {
       }]
     },
     options: {
-      scales: {yAxes: [{ticks: {beginAtZero: true}}]},
-      tooltips: {displayColors: true}
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      tooltips: {
+        displayColors: true
+      }
     }
   });
   return myChart;
@@ -61,27 +72,26 @@ if (window.myChart != undefined) {
   window.myChart.destroy();
 } else {
   // set initial year = '2005'
-  currentData('2005').then(function(chartData) {
+  currentData('2005').then(function (chartData) {
     myChart = createChart('myChart', chartData, colorScale, colorRangeInfo)
   });
 }
 
 
-$(document).on('change', 'select.year-selector', (function() {
-                 $('select').formSelect();
-                 var elem = document.querySelector('select.year-selector');
-                 //  var options = document.querySelectorAll('option');
-                 var instance = M.FormSelect.getInstance(elem);
-                 console.log('instance', instance)
-                 var value = instance.getSelectedValues()
-                 console.log(value);
-                 //  instance.destroy();
-                 currentData(value).then(function(chartData) {
-                   if (window.myChart != undefined) {
-                     window.myChart.destroy();
-                   }
-                   myChart = createChart(
-                       'myChart', chartData, colorScale, colorRangeInfo);
-                   myChart.update()
-                 });
-               }))
+$(document).on('change', 'select.year-selector', (function () {
+  $('select').formSelect();
+  var elem = document.querySelector('select.year-selector');
+  var instance = M.FormSelect.getInstance(elem);
+  console.log('instance', instance)
+  var value = instance.getSelectedValues()
+  console.log(value);
+  // instance.destroy();
+  currentData(value).then(function (chartData) {
+    if (window.myChart != undefined) {
+      window.myChart.destroy();
+    }
+    myChart = createChart(
+      'myChart', chartData, colorScale, colorRangeInfo);
+    myChart.update()
+  });
+}))
