@@ -10,6 +10,7 @@
      $('.slider').slider();
      $('.tabs').tabs();
      $('.collapsible').collapsible();
+     $('select').formSelect();
    });
 
  };
@@ -65,6 +66,6 @@
 
 
  // this is to enable selector in Materialize
- $(document).ready(function () {
-   $('select').formSelect();
- });
+//  $(document).ready(function () {
+//   $('select').formSelect();
+//  });
