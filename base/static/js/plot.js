@@ -96,7 +96,7 @@ Plotly.d3.csv("data/combined.csv", function (err, rows) {
 
     var selector = document.querySelector('[data-num="0"'),
     plotEl = selector.querySelector('.plot'),
-    OccupationSelector = selector.querySelector('.Occupationdata');
+    OccupationSelector = selector.querySelector('#Occupationdata');
 
     function assignOptions(textArray, selector) {
     for (var i = 0; i < textArray.length;  i++) {
