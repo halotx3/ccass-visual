@@ -1,1 +1,3 @@
 # ccass-visual
+
+![](preview.gif)
