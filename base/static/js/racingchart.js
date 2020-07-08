@@ -4,6 +4,8 @@ const celebURL = 'http://serene-beach-38826.herokuapp.com/api/v1/celebrities';
 document.getElementById("buAth").addEventListener("click", athleteChart);
 document.getElementById("buCel").addEventListener("click", celebChart);
 
+setTimeout(athleteChart, 2500);
+
 //Function for Athletes Chart
 function athleteChart(){
     $( "#gInsert" ).empty();
@@ -58,7 +60,7 @@ function athleteChart(){
                 style: {
                   color: '#fff',
                   background: '#00E396',
-                  fontsize: '20px'
+                  fontsize: '40px'
                 },
                 text: 'Earnings in Millions, Athletes',
               }
@@ -96,6 +98,8 @@ function athleteChart(){
     
           var chart = new ApexCharts(document.querySelector("#gInsert"), options);
           chart.render();
+
+          // setTimeout(celebChart, 45000);
     })
 };
 //Function for Celebrities Chart
@@ -188,4 +192,5 @@ function celebChart(){
           var chart = new ApexCharts(document.querySelector("#gInsert"), options);
           chart.render();
     })
+    // setTimeout(athleteChart, 45000);
 };
