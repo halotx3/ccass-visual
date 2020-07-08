@@ -28,6 +28,7 @@
   <link type="text/css" rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://d3js.org/d3-color.v1.min.js"></script>
   <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
@@ -165,13 +166,25 @@
 
   <div class="container g2">
     <div class="row center black-text">
-      <div class="col s8"">
-          <h1>ADD GRAPH HERE 2</h1>
+      <div class="col s12"">
+          <!-- <h1>ADD GRAPH HERE 2</h1> -->
+          <div id="APH_charts"></div>
+          <div class="showcase__section" id="bubble">
+            <div class="spacer --small"></div>
+            <div id="bubbleplots">
+              <div class="bubbleplot" data-num="0">
+                <div class="plot" id="plotdiv"></div>
+                <div class="control-row">
+                  Occupation: <select class="Occupationdata"></select>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
-        <div class=" col s4">
+        <!-- <div class=" col s4">
         <div>Enter information about the Graph 2</div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -274,6 +287,7 @@
   <!--JavaScript at end of body for optimized loading-->
   <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script> -->
+  <script src="static/js/plot.js"></script>
   <script src="static/js/table.js"></script>
   <script src="static/js/app.js"></script>
   <script src="static/js/racingchart.js"></script>
