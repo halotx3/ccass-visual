@@ -1,4 +1,12 @@
 // set the dimensions and margins of the graph
+// function start() {
+//   $(document).ready(function () {
+//     $('select').formSelect();
+//   });
+// };
+// start();
+
+// set the dimensions and margins of the graph
 Plotly.d3.csv("data/combined.csv", function (err, rows) {
 // Plotly.d3.csv("combined.csv", function (err, rows) {
     function unpack(rows, key) {
@@ -13,17 +21,9 @@ Plotly.d3.csv("data/combined.csv", function (err, rows) {
         annual_byCat = unpack(rows, 'earnings_avg_2'),
         listofOccupation = [];
 
-    // console.log('**************Test unpack**************')
-    // console.log(annual_byOcc);
-    // console.log(allYear);
-    // console.log(allCategory);
-    // currentOccupation;
-
     for (var i = 0; i < allOccupation.length; i++) {
         if (listofOccupation.indexOf(allOccupation[i]) === -1) {
             listofOccupation.push(allOccupation[i]);
-            // console.log('**************Check Here**************')
-            // console.log(allOccupation[i])
         }
     }
 
@@ -38,14 +38,10 @@ Plotly.d3.csv("data/combined.csv", function (err, rows) {
                 currentIncome1.push(annual_byOcc[i]);
                 currentIncome2.push(annual_byCat[i]);
                 currentCategory.push(allCategory[i]);
-                currentYear.push(allYear[i]);
-                console.log('**************IF Check Here**************')
-                console.log(annual_byOcc[i])
-                console.log(annual_byCat[i])
+                currentYear.push(allYear[i])
             }
         }
-        console.log('**************Array Check Here**************')
-        console.log(currentIncome1);
+        
     };
 
 
@@ -60,6 +56,7 @@ Plotly.d3.csv("data/combined.csv", function (err, rows) {
       x: currentYear,
       y: currentIncome1,
       mode: 'lines',
+      line: {width: 5},
       marker: {
         size: 200, 
         opacity: 0.8
@@ -75,27 +72,27 @@ Plotly.d3.csv("data/combined.csv", function (err, rows) {
       marker: {
         size: currentIncome2,
         sizemode: 'area',
-        sizeref: .1,
+        sizeref: .2,
         opacity: 0.4},
       transforms: [
-        {type: 'groupby',
-        groups: currentCategory,
-        }]
+        {type: 'groupby', groups: currentCategory}]
     };
 
 
     var data = [trace_line, trace_bubble];
 
     var layout = {
-      title: 'Average Annual Income - <br>'+ chosenOccupation + ' ($Millions)',
-      yaxis: {type: 'log', title: 'Income $MM'}
+      //title: chosenOccupation + ' ($Millions)',
+      xaxis: {zeroline: true, showline: true},
+      yaxis: {title: 'Income $MM'}
     };
+    var config = {responsive: true}
 
-    Plotly.newPlot('plotdiv', data, layout, {showSendToCloud: true});
+    Plotly.newPlot('plotdiv', data, layout, config);
+
     };
 
     var selector = document.querySelector('[data-num="0"'),
-    plotEl = selector.querySelector('.plot'),
     OccupationSelector = selector.querySelector('#Occupationdata');
 
     function assignOptions(textArray, selector) {
